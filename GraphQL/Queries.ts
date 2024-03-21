@@ -1,4 +1,5 @@
 import { resType } from "@/app/[slug]/page";
+import { Category, ProductDetail } from "@/model/model";
 import { GraphQLClient, request, gql } from "graphql-request";
 
 const uri =
@@ -17,7 +18,9 @@ export const graphcms = new GraphQLClient(uri, {
   },
 });
 
-export const getAllCategories = async () => {
+export const getAllCategories = async (): Promise<{
+  categories: Category[];
+}> => {
   const QUERY_SLUG_CATEGORIES = gql`
     query getCategories {
       categories {
@@ -30,16 +33,22 @@ export const getAllCategories = async () => {
       }
     }
   `;
-  const result = await graphcms.request(QUERY_SLUG_CATEGORIES);
+  const result: { categories: Category[] } = await graphcms.request(
+    QUERY_SLUG_CATEGORIES
+  );
 
   return result;
 };
-export const getProductfromCategory = async (id: string) => {
+export const getProductfromCategory = async (id: string): Promise<resType> => {
   const PRODUCTS_QUERY = gql`
   query MyQuery {
     category(where: {id: "${id}"}) {
       name
       id
+      slug
+      coverPhoto{
+        url
+      }
       products {
         coverPhoto {
           url
@@ -56,12 +65,14 @@ export const getProductfromCategory = async (id: string) => {
     }
   }
   `;
-  const result = await graphcms.request(PRODUCTS_QUERY);
+  const result: resType = await graphcms.request(PRODUCTS_QUERY);
 
   return result;
 };
 
-export const getProductDetail = async (id: string) => {
+export const getProductDetail = async (
+  id: string
+): Promise<{ product: ProductDetail }> => {
   const PRODUCT_QUERY = gql`
   query MyQuery {
     product(where: {id: "${id}"}) {
@@ -100,7 +111,9 @@ export const getProductDetail = async (id: string) => {
   }
   
     `;
-  const result = await graphcms.request(PRODUCT_QUERY);
+  const result: { product: ProductDetail } = await graphcms.request(
+    PRODUCT_QUERY
+  );
 
   return result;
 };

@@ -1,20 +1,25 @@
-"use client";
 import { getProductDetail } from "@/GraphQL/Queries";
 import ButtonContact from "@/components/ButtonContact";
 import ProductCard from "@/components/ProductCard";
 import { ProductDetail, ProductListItem } from "@/model/model";
-import React, { useEffect, useState } from "react";
+import { mergeOpenGraph } from "@/utils/mergeOpenGraph";
+import { Metadata, ResolvingMetadata } from "next";
+// import React, { useEffect, useState } from "react";
 
-function ProductItem({ params }: { params: { id: string } }) {
-  const [productDetail, setProductDetail] = useState<ProductDetail | null>(
-    null
-  );
-  useEffect(() => {
-    getProductDetail(params.id).then((res: any) => {
-      console.log(res.product);
-      setProductDetail(res.product);
-    });
-  }, []);
+export const revalidate = 3600;
+async function ProductItem({ params }: { params: { id: string } }) {
+  // const [productDetail, setProductDetail] = useState<ProductDetail | null>(
+  //   null
+  // );
+  const data = await getProductDetail(params.id);
+  const productDetail = (data as any).product;
+
+  // useEffect(() => {
+  //   getProductDetail(params.id).then((res: any) => {
+  //     console.log(res.product);
+  //     setProductDetail(res.product);
+  //   });
+  // }, []);
   if (productDetail) {
     return (
       <div>
@@ -53,7 +58,7 @@ function ProductItem({ params }: { params: { id: string } }) {
         ></div>
 
         <div className="px-[50px] flex flex-col gap-4 mt-8">
-          {productDetail.images.map((item) => {
+          {productDetail.images.map((item: { url: string }) => {
             return <img src={item.url} className="w-full" />;
           })}
         </div>
@@ -72,6 +77,40 @@ function ProductItem({ params }: { params: { id: string } }) {
       </div>
     );
   }
+}
+type Props = {
+  params: { id: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.id;
+
+  // fetch data
+  // const product = await fetch(`https://.../${id}`).then((res) => res.json())
+  const data = await getProductDetail(params.id);
+  const productDetail = data.product;
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: productDetail.name,
+    metadataBase: new URL(
+      `https://hoaxinhchoem.io.vn/products/${productDetail.id}`
+    ),
+    openGraph: {
+      images: [productDetail.coverPhoto.url, ...previousImages],
+      type: "website",
+      siteName: "Hoaxinhchoem",
+      title: productDetail.name,
+      description: productDetail.description,
+    },
+  };
 }
 
 export default ProductItem;

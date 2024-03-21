@@ -1,16 +1,17 @@
-"use client";
 import { getAllCategories } from "@/GraphQL/Queries";
 import { Category as CategoryType } from "@/model/model";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const Category = () => {
-  const [categories, setCategories] = useState<CategoryType[]>([]);
-  useEffect(() => {
-    getAllCategories().then((res: any) => {
-      setCategories(res.categories);
-    });
-  }, []);
+const Category = async () => {
+  // const [categories, setCategories] = useState<CategoryType[]>([]);
+  const data = await getAllCategories();
+  const categories = data.categories;
+  // useEffect(() => {
+  //   getAllCategories().then((res: any) => {
+  //     setCategories(res.categories);
+  //   });
+  // }, []);
 
   if (!categories) {
     return null;
