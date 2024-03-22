@@ -34,7 +34,7 @@ const item = {
     opacity: 1,
     y: 0,
     transition: {
-      ease: [0.215, 0.61, 0.355, 1],
+      ease: [0.6, 0.01, 0.05, -0.95],
       duration: 1.6,
     },
   },
@@ -54,8 +54,17 @@ const itemMain = {
     opacity: 1,
     y: 0,
     transition: {
-      ease: [0.215, 0.61, 0.355, 1],
+      ease: [0.6, 0.01, 0.05, -0.95],
       duration: 1.6,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 400,
+    z: 300,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
     },
   },
 };
@@ -76,10 +85,7 @@ const Loader = ({
         className={classes.loaderinner}
       >
         <motion.div variants={itemMain} className={classes.transitionimage}>
-          <motion.img
-            layoutId="underline"
-            src={"/img/gallery/herocenter.jpg"}
-          />
+          <motion.img layoutId="underline" src={"/img/herobg.jpg"} />
         </motion.div>
         <ImageBlock variants={item} id="image3" url="/img/gallery/hero3.jpg" />
         <ImageBlock variants={item} id="image4" url="/img/gallery/hero4.jpg" />

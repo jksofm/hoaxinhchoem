@@ -67,46 +67,46 @@ const Header = () => {
       >
         <h2
           onClick={handleNav}
-          className="mt-3 pl-4 text-heading3-bold text-primary-500"
+          className="mt-4 pl-4 text-heading3-bold text-primary-500"
         >
           <Link href="/">Home</Link>
         </h2>
         <h2
           onClick={handleNav}
-          className="mt-3 pl-4 text-heading3-bold text-primary-500"
+          className="mt-4 pl-4 text-heading3-bold text-primary-500"
         >
           <Link href="/aboutus">About us</Link>
         </h2>
-        <h2 className="pl-4 mt-3 text-heading3-bold text-primary-500">
+        <h2 className="pl-4 mt-4 text-heading3-bold text-primary-500">
           Flower
         </h2>
 
         <ul className="pl-8 text-primary-500">
-          <li onClick={handleNav} className="mb-2">
+          <li onClick={handleNav} className="mt-3 mb-3">
             <Link href="/all">All</Link>
           </li>
-          <li onClick={handleNav} className="mb-2">
+          <li onClick={handleNav} className="mb-3">
             <Link href="/boxflower">Box Flower</Link>
           </li>
-          <li onClick={handleNav} className="mb-2">
+          <li onClick={handleNav} className="mb-3">
             <Link href="/birthdaybox">Birthday Flower</Link>
           </li>
-          <li onClick={handleNav} className="mb-2">
+          <li onClick={handleNav} className="mb-3">
             <Link href="/bouquet">Bouquet</Link>
           </li>
-          <li onClick={handleNav} className="mb-2">
+          <li onClick={handleNav} className="mb-3">
             <Link href="/favorite">Favorite</Link>
           </li>
         </ul>
         <h2
           onClick={handleNav}
-          className="pl-4 mt-3 text-heading3-bold text-primary-500"
+          className="pl-4 mt-4 text-heading3-bold text-primary-500"
         >
           <Link href="/gallery">Gallery</Link>
         </h2>
         <h2
           onClick={handleNav}
-          className="pl-4 mt-3 text-heading3-bold text-primary-500"
+          className="pl-4 mt-4 text-heading3-bold text-primary-500"
         >
           <Link href="/contact">Contact</Link>
         </h2>
@@ -115,7 +115,7 @@ const Header = () => {
         onClick={handleNav}
         className="cursor-pointer flex items-center gap-2"
       >
-        <h2 className="text-primary-500 font-[700] lg:text-[24px] md:text-[18px] text-[14px]">
+        <h2 className="text-primary-500 font-[700] lg:text-[24px] md:text-[18px] text-[18px]">
           SHOP
         </h2>
         <svg
