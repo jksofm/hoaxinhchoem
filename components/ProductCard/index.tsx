@@ -2,13 +2,19 @@
 import { ProductListItem } from "@/model/model";
 import Link from "next/link";
 import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/animation/animation";
 
 const ProductCard = ({ item }: { item: ProductListItem }) => {
   const refCard = useRef<HTMLElement>(null);
   const { coverPhoto, description, id, images, name, slug, price } = item;
   const handleMouseEnter = () => {
     const ref = (refCard.current as HTMLElement).style;
-    ref.backgroundImage = `url(${images[1] ? images[1].url : images[0].url})`;
+    if (images[1]) {
+      ref.backgroundImage = `url(${images[1].url})`;
+    } else {
+      ref.backgroundImage = `url(${coverPhoto.url})`;
+    }
   };
   const handleMouseOut = () => {
     const ref = (refCard.current as HTMLElement).style;
@@ -21,7 +27,11 @@ const ProductCard = ({ item }: { item: ProductListItem }) => {
       href={`/products/${id}`}
       className=""
     >
-      <div
+      <motion.div
+        variants={fadeIn("up", 0.4)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: true, amount: 0.3 }}
         style={{
           backgroundImage: `url(${coverPhoto.url})`,
           backgroundRepeat: "no-repeat",
@@ -30,7 +40,7 @@ const ProductCard = ({ item }: { item: ProductListItem }) => {
         }}
         ref={refCard as any}
         className="min-h-[500px] md:h-[700px] lg:min-h-[1000px] transition-all"
-      ></div>
+      ></motion.div>
       <div className="mt-2 text-center">
         <p className="">{name}</p>
         <div className="flex justify-center gap-1 items-center">

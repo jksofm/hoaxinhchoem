@@ -1,4 +1,6 @@
 "use client";
+import { mergeOpenGraph } from "@/utils/mergeOpenGraph";
+import { Metadata } from "next";
 import { Roboto, Arima, Scope_One } from "next/font/google";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -61,7 +63,7 @@ const Header = () => {
       <div className="absolute w-full bg-[#b08759] top-0 left-0 h-[5px]"></div>
       <div
         ref={refNav as any}
-        className="absolute hidden top-[85px] left-0 min-h-screen w-full bg-[rgba(251,255,254,0.84)] z-[101]"
+        className="absolute hidden md:top-[70px] top-[60px] lg:top-[85px] left-0 min-h-screen w-full bg-[rgba(251,255,254,0.84)] z-[99999]"
       >
         <h2
           onClick={handleNav}
@@ -81,6 +83,9 @@ const Header = () => {
 
         <ul className="pl-8 text-primary-500">
           <li onClick={handleNav} className="mb-2">
+            <Link href="/all">All</Link>
+          </li>
+          <li onClick={handleNav} className="mb-2">
             <Link href="/boxflower">Box Flower</Link>
           </li>
           <li onClick={handleNav} className="mb-2">
@@ -93,12 +98,12 @@ const Header = () => {
             <Link href="/favorite">Favorite</Link>
           </li>
         </ul>
-        {/* <h2
+        <h2
           onClick={handleNav}
           className="pl-4 mt-3 text-heading3-bold text-primary-500"
         >
-          <Link href="/blog">Blog</Link>
-        </h2> */}
+          <Link href="/gallery">Gallery</Link>
+        </h2>
         <h2
           onClick={handleNav}
           className="pl-4 mt-3 text-heading3-bold text-primary-500"
@@ -110,13 +115,13 @@ const Header = () => {
         onClick={handleNav}
         className="cursor-pointer flex items-center gap-2"
       >
-        <h2 className="text-primary-500 font-[700] lg:text-[24px] text-[18px] font-[500]">
+        <h2 className="text-primary-500 font-[700] lg:text-[24px] md:text-[18px] text-[14px]">
           SHOP
         </h2>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width={18}
-          height={18}
+          width={14}
+          height={14}
           viewBox="0 0 512 512"
           fill="#b08759"
         >
@@ -126,13 +131,17 @@ const Header = () => {
 
       <div className={`${arima.className} m-auto translate-x-[-8%]`}>
         <Link href={"/"}>
-          <h2 className="lg:text-[42px] text-[36px] font-[900] text-primary-500">
+          <h2 className="lg:text-[42px] md:text-[36px] text-[20px] font-[900] text-primary-500">
             Hoaxinhchoem
           </h2>
         </Link>
       </div>
     </div>
   );
+};
+export const metadata: Metadata = {
+  metadataBase: new URL("https://hoaxinhchoem.io.vn/gallery"),
+  openGraph: mergeOpenGraph(),
 };
 
 export default Header;

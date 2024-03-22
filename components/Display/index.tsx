@@ -1,10 +1,19 @@
+"use client";
+
 import React from "react";
 import ButtonShop from "../ButtonShop";
-
+import { motion } from "framer-motion";
+import { fadeIn } from "@/animation/animation";
 function Display() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 px-4">
-      <div className="relative overflow-hidden block">
+      <motion.div
+        variants={fadeIn("up", 0.4)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.3 }}
+        className="relative overflow-hidden block"
+      >
         <div
           //   style={{
           //     backgroundImage: `url(/img/boxflower.jpg)`,
@@ -15,7 +24,7 @@ function Display() {
         >
           <img
             src="/img/boxflower.jpg"
-            className="overflow-clip over h-[800px] lg:h-[600px] w-full object-cover"
+            className="overflow-clip h-[400px] md:h-[800px] lg:h-[600px] w-full object-cover"
           />
         </div>
         <div>
@@ -25,8 +34,14 @@ function Display() {
 
           <ButtonShop link="/boxflower" />
         </div>
-      </div>
-      <div className="relative overflow-hidden block">
+      </motion.div>
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.3 }}
+        className="relative overflow-hidden block"
+      >
         <div
           //   style={{
           //     backgroundImage: `url(/img/boxflower.jpg)`,
@@ -37,7 +52,7 @@ function Display() {
         >
           <img
             src="/img/bouquet.jpg"
-            className="overflow-clip object-cover h-[800px] lg:h-[600px] w-full"
+            className="overflow-clip object-cover h-[400px] md:h-[800px] lg:h-[600px] w-full"
           />
         </div>
         <div>
@@ -47,8 +62,14 @@ function Display() {
 
           <ButtonShop link="/bouquet" />
         </div>
-      </div>
-      <div className="relative overflow-hidden block">
+      </motion.div>
+      <motion.div
+        variants={fadeIn("up", 0.05)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.3 }}
+        className="relative overflow-hidden block"
+      >
         <div
           //   style={{
           //     backgroundImage: `url(/img/boxflower.jpg)`,
@@ -59,7 +80,7 @@ function Display() {
         >
           <img
             src="/img/birthdaybox.jpg"
-            className="overflow-clip object-cover w-full h-[800px] lg:h-[600px]"
+            className="overflow-clip object-cover w-full h-[400px] md:h-[800px] lg:h-[600px]"
           />
         </div>
         <div>
@@ -69,7 +90,7 @@ function Display() {
 
           <ButtonShop link="/birthdaybox" />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

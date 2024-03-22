@@ -1,5 +1,5 @@
 import { resType } from "@/app/[slug]/page";
-import { Category, ProductDetail } from "@/model/model";
+import { Category, ProductDetail, ProductListItem } from "@/model/model";
 import { GraphQLClient, request, gql } from "graphql-request";
 
 const uri =
@@ -112,6 +112,32 @@ export const getProductDetail = async (
   
     `;
   const result: { product: ProductDetail } = await graphcms.request(
+    PRODUCT_QUERY
+  );
+
+  return result;
+};
+export const getAllProduct = async (): Promise<{
+  products: ProductListItem[];
+}> => {
+  const PRODUCT_QUERY = gql`
+    query MyQuery {
+      products(last: 20) {
+        coverPhoto {
+          url
+        }
+        description
+        images {
+          url
+        }
+        name
+        slug
+        price
+        id
+      }
+    }
+  `;
+  const result: { products: ProductListItem[] } = await graphcms.request(
     PRODUCT_QUERY
   );
 

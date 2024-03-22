@@ -23,6 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/img/favicon.png" sizes="32x32" />
         <link rel="icon" href="/img/favicon.png" type="image/svg+xml" />
+        {/* <script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script> */}
       </head>
       <body className={inter.className}>
         <section className="">

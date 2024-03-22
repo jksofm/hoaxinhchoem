@@ -3,8 +3,8 @@ import * as React from "react";
 
 export default function Contact() {
   return (
-    <div className="grid grid-cols-12 p-[200px]">
-      <div className="col-span-4">
+    <div className="grid grid-cols-12 p-[20px] lg:p-[200px] bg-slate-200">
+      <div className="lg:col-span-4 col-span-12">
         <div className="mb-8">
           <h2 className="text-heading3-bold">OUR STORE</h2>
           <p className="text-[14px]">
@@ -32,9 +32,9 @@ export default function Contact() {
           </Link>
         </div>
       </div>
-      <div className="col-span-8 text-right">
-        <h2 className="text-[64px] text-[#403a2c]">SEND US</h2>
-        <p className="text-[140px] text-[#b3acac] relative">
+      <div className="lg:col-span-8 col-span-12 text-right">
+        <h2 className="lg:text-[64px] text-[32px] text-[#403a2c]">SEND US</h2>
+        <p className="lg:text-[140px] text-[86px] text-[#b3acac] relative">
           <em>MESSAGE</em>
           {/* <div className="absolute w-[600px] h-[500px] tran bottom-3 right-3 rounded-full border border-[#403a2c] rotateX"></div> */}
         </p>

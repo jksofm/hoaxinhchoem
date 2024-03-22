@@ -39,18 +39,7 @@ async function Page({ params: { slug = "home" } }) {
   }
   const data = await getProductfromCategory(id);
   const productList = data.category.products;
-  // useEffect(() => {
-  //   if (
-  //     slug === "bouquet" ||
-  //     slug === "boxflower" ||
-  //     slug === "favorite" ||
-  //     slug === "birthdaybox"
-  //   ) {
-  //     getProductfromCategory(id).then((res: any) => {
-  //       setProductList(res.category.products);
-  //     });
-  //   }
-  // }, [id]);
+
   if (
     slug !== "bouquet" &&
     slug !== "boxflower" &&

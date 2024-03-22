@@ -244,6 +244,25 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        // "text-clip": {
+        //   from : {backgr: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw));}
+        // }
+        "outer-left": {
+          from: {
+            transform: "translateX(50%)",
+          },
+          to: {
+            transform: "none",
+          },
+        },
+        "inner-left": {
+          from: {
+            transform: "translateX(-50%)",
+          },
+          to: {
+            transform: "none",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -251,7 +270,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("flowbite/plugin")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("flowbite/plugin"),
+    require("tailwind-clip-path"),
+  ],
 } satisfies Config;
 
 export default config;
